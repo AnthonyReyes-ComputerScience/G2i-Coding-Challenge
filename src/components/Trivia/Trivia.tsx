@@ -56,7 +56,7 @@ const Trivia = (props: Props) => {
           const playingCallback = () => setPlayState((prev) => ({ ...prev, questionNumber: 0, screen: "playing" }))
 
           await props.fetchQuestions(APIAttributes, playingCallback)
-          console.log("after fetch line");
+          // console.log("after fetch line");
           return;
         }
         case "playing": {
