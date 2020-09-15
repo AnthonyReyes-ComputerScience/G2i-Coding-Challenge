@@ -1,0 +1,23 @@
+div.Not-Found{
+    display: flex;
+    margin: auto;
+    padding: 3em;
+    align-items: center;
+    height: 50vh;
+    width: 100vh;
+    font-size: 3em;
+    text-align: center;
+    background-color: rgba(54, 54, 54, 0.808);
+    color: rgb(223, 223, 223);
+    overflow: show;
+}
+
+a.link-to-home {
+    color: rgb(223, 223, 223);
+    text-decoration: none;
+}
+a.link-to-home:hover {
+    cursor: pointer;
+    color: rgb(223, 223, 223);
+    text-decoration: underline;
+}

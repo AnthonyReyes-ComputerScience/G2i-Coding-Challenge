@@ -9,7 +9,12 @@ div.Quiz-Wrapper {
     align-items: center;
 }
 
+div.Question-Box-PreClick {
+    cursor: pointer;
+}
+
 div.Question-Box, div.Question-Box-PreClick {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,8 +25,10 @@ div.Question-Box, div.Question-Box-PreClick {
     height: 50vh;
     width: 100%;
     outline: solid;
-    
-
+    outline-color: rgba(0, 0, 0, 0.705);
+    background-color: rgba(27, 27, 27, 0.767);
+    color: rgb(221, 221, 221);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 div.Answers-List-Bool {
@@ -41,8 +48,13 @@ div.Answers-List-Multi {
 }
 
 span.Question-Header {
+    padding-left: 1em;
+    padding-right: 1em;
+    display: block;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 3em;
+    margin: auto;
+    text-align: center;
 }
 
 
@@ -50,6 +62,8 @@ span.Question-Content{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 2em;
     text-align: center;
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 span.Question-Number {
@@ -78,7 +92,7 @@ button.Boolean-Button:focus {
 }
 
 button.Next-Button {
-    background-color: rgba(0, 255, 179, 0.507);
+    background-color: rgba(0, 255, 179, 0.938);
     border: none;
     border-radius: 1em;
     width: 25%;
@@ -87,7 +101,7 @@ button.Next-Button {
     padding: .5em;
 }
 button.Next-Button:hover {
-    background-color: rgba(128, 250, 213, 0.507);
+    background-color: rgba(128, 250, 213, 0.904);
     margin-top: -.2em;
     width: 28%;
     font-size: 1.7em;

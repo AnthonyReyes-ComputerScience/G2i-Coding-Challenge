@@ -1,18 +1,26 @@
-import { SystemState, SystemActionTypes, QuestionI } from '../types'
-import { FETCH_QUESTIONS, ANSWER_QUESTION } from './actions'
-import {initialState} from './store'
-import { combineReducers } from 'redux';
+/**
+ * @author Anthony Reyes
+ * @file Reducers.tsx
+ * System Reducer
+ * 
+ * Only a single reducer being exported by default
+ */
 
+import { SystemState, SystemActionTypes, ANSWER_QUESTION, FETCH_QUESTIONS } from '../types'
+import {initialState} from './store'
 
 /**
  * 
  * @param state the Store given to the system Reducer 
  * @param action dispatch
+ * 
+ * actions:
+ * FETCH_QUESTIONS
+ * ANSWER_QUESTION
  */
 const systemReducer = (state: SystemState = initialState, action: SystemActionTypes): SystemState => {
-    console.log(action, state);
+    // console.log(action, state);
     const newState: SystemState = {...state}
-    
     switch (action.type) {
         case FETCH_QUESTIONS: {
             return {

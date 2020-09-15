@@ -1,17 +1,63 @@
-div.Home-Wrapper {
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300&display=swap');
+
+div.Home-Container {
     padding: 5em;
-    height: 75vh;
-    width: 75vh;
+    height: 100vh;
+    width: 50vh;
     margin: auto;
     display: Flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: rgba(27, 27, 27, 0.767);
+    color: rgba(221, 221, 221, 0.973);
+    overflow: scroll;
+}
+div.Home-Wrapper {
+    height: 100vh;
+    width: 50vh;
+    margin: auto;
+    display: Flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+
+span.Header {
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 3em;
+}
+
+span.Prompt1 {
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Overpass', sans-serif;
+}
+span.Prompt2 {
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Overpass', sans-serif;
 }
 
 button.begin-button{
-    height: 4em;
+    height: 10%;
     width: 5em;
     font-size: large;
+    border: none;
+    border-radius: 1em;
+    background-color: lightcyan;
+}
+
+button.begin-button:hover{
+    transition: .5s;
+    background-color: rgb(2, 159, 250);
+    color: white
+}
+button.begin-button:focus{
+    outline: none;
 }
 

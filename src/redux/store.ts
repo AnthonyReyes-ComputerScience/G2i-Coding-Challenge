@@ -1,3 +1,9 @@
+/**
+ * @author Anthony Reyes
+ * @file store.tsx
+ * Centralized store for App
+ */
+
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import {SystemState} from '../types'

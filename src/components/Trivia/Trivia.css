@@ -1,0 +1,10 @@
+div.Trivia-Wrapper {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  justify-items: center;
+  background: url('https://i.pinimg.com/originals/b8/eb/f4/b8ebf445e2dd9aaff8633d2d13ef1115.jpg');
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}

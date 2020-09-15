@@ -1,18 +1,18 @@
+/**
+ * @author Anthony Reyes
+ * @file Quiz.tsx
+ * Quiz view. Props are given to the component and displayed 
+ * and the Trivia component controls the content.
+ */
+
 import React, { useState } from 'react';
-import { QuestionI } from '../../types';
+import { QuizI } from '../../types';
 import './Quiz.css'
-import { report } from 'process';
 
 export const decode = (html: string) => {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
-}
-
-export interface QuizI {
-    nav: (action: any) => void,
-    questions: QuestionI[],
-    questionNumber: number
 }
 
 /**
@@ -26,14 +26,22 @@ const shuffle = (arr: any[]) => {
     while (0 !== i) {
         ri = Math.floor(Math.random() * i);
         i -= 1;
-        test = arr[i];
+        t = arr[i];
         arr[i] = arr[ri];
         arr[ri] = t;
     }
     return arr;
 }
 
-
+/**
+ * 
+ * @param props type -> QuizI
+ *  nav: (action: any) => void: custom nav 
+ *  questions: QuestionI[], 
+ *  questionNumber: number 
+ *  @description This component acts as a question card component and view the quiz, because
+ *  the quiz is just one card.
+ */
 export const Quiz = (props: QuizI) => {
     const [cardState,  cardSetState] = useState({
         cardClicked: false,
@@ -42,10 +50,22 @@ export const Quiz = (props: QuizI) => {
     
     const {category, question, correct_answer, incorrect_answers, type} = props.questions[props.questionNumber];
     const footer: string = (props.questionNumber + 1).toString() + " of " + props.questions.length.toString()
-    const PreClickBox = (<div className="Question-Box-PreClick" onClick={(e)=>{cardSetState((prev) => ({...prev, cardClicked:true}))}}> 
-                            <span className="Question-Content">{decode(question)}</span> 
-                         </div>)
-    
+    /**
+     * @description CardBox before being clicked on.
+     */
+    const PreClickBox = () => {
+        return (
+            <div className="Question-Box-PreClick" 
+                onClick={(e)=>{
+                    cardSetState((prev) => ({...prev, cardClicked:true}))
+                }
+            }> 
+                <span className="Question-Content">{decode(question)}</span> 
+                <span> Click to Reveal </span>
+            </div>)}
+    /**
+     * @description CardBox after being clicked on.
+     */
     const PostClickBox = () => { 
         let allAnswers = []
         let listType: string;
@@ -90,9 +110,9 @@ export const Quiz = (props: QuizI) => {
     return (
         <div className="Quiz-Wrapper">
             <div className="Question-Header-Wapper">
-                <span className="Question-Header">{category}</span>
+                <span className="Question-Header"><b>{category}</b></span>
             </div>
-                {cardState.cardClicked || PreClickBox}
+                {cardState.cardClicked || PreClickBox()}
                 {!cardState.cardClicked || PostClickBox()}
             <div className="Question-Number-Wrapper">
                 <span className="Question-Number">{footer}</span>

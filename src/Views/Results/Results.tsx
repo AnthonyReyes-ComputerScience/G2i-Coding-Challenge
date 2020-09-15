@@ -1,32 +1,35 @@
-import React from 'react';
-import { QuestionI } from '../../types';
-import {decode} from '../Quiz/Quiz';
+/**
+ * @author Anthony Reyes
+ * @file Result.tsx
+ * View for the Result screen  
+ */
 
-export interface ResultsI {
-    nav: (action: any) => void
-    questions: QuestionI[]
-}
+import React from 'react';
+import { QuestionI, ResultsI } from '../../types';
+import "./Results.css";
+import { ResultCard } from '../../components/ResultCard';
 
 export const Results = (props: ResultsI) => {
+    const isCorrectAnswer = (correct: string, answer: string) => correct === answer;
+    const isCorrect = (question: QuestionI) => { 
+        if (question.answered)
+            { return isCorrectAnswer(question.correct_answer, question.answered)
+        }
+    };
 
+    const totalCorrect = props.questions.filter((question: QuestionI) => isCorrect(question)).length
     return (
-        <div>
-            {props.questions.map((question: QuestionI, i: number)=>{
-                return (
-                <div>
-                    <div>
-                        {i}.
-                        {decode(question.question)}
-                    </div>
-                    <div>
-                        + {decode(question.correct_answer)}
-                        {question.incorrect_answers.map((ia: string)=>{return(
-                            <div>{ia}</div>
-                        )})}
-                            <div>ANSWERED {question.answered}</div>
-                    </div>
-                </div>)
-            })}
+        <div className='Results-Wrapper'>
+            <span className='Results-Header'><h1><b>Results</b></h1></span>
+            <div className='Result-Cards-Wrapper'>
+                <span className='Score-Span'>{"You Scored: "} {totalCorrect}/{props.questions.length} </span>
+                {props.questions.map((question: QuestionI, i: number)=>{
+                    return (
+                        <ResultCard Question={question} QuestionNumber={i} key={i}/>
+                    )
+                })}
+                <button className='play-again' onClick={props.nav}> Play again? </button>
+            </div>
         </div>
     );
 }

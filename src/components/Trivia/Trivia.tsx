@@ -1,25 +1,29 @@
+/**
+ * @author Anthony Reyes
+ * @file Trivia.tsx
+ * Trivia is a HOC managing the App.
+ */
+
 import React, { useState } from 'react';
 import './Trivia.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import {Home} from "../Views/Start/Home"
-import {Quiz} from "../Views/Quiz/Quiz"
-import {Results } from '../Views/Results/Results';
-import {NotFound } from '../Views/NotFound/NotFound'
+import {Home} from "../../Views/Start/Home"
+import {Quiz} from "../../Views/Quiz/Quiz"
+import {Results } from '../../Views/Results/Results';
+import {NotFound } from '../../Views/NotFound/NotFound'
+import { APIAttributesI } from '../../types'
 import { connect, ConnectedProps } from 'react-redux'
-import * as actionDispatcher from "../redux/actions"
+import * as actionDispatcher from "../../redux/actions"
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Props = PropsFromRedux & {
-}
+type Props = PropsFromRedux & {}
 
-export interface APIAttributesI {
-  amount: number,
-  category?: string,
-  difficulty?: string,
-  type?: string
-}
-
+/**
+ * 
+ * @param props Connections from redux
+ * @description The higher order component running the trivia application
+ */
 const Trivia = (props: Props) => {
   const [playState, setPlayState] = useState({
     screen: "home",
@@ -27,6 +31,8 @@ const Trivia = (props: Props) => {
   });
 
   // Structured for Scalability
+  // can add dropdowns for structuring the API call.
+  // for now these will be static.
   const amount:number = 10;
   const category = undefined;
   const difficulty = "hard";
@@ -46,7 +52,7 @@ const Trivia = (props: Props) => {
       switch (playState.screen) {
         case "home": {
           // Navigation to quiz
-          console.log("entering nav");
+          // console.log("entering nav");
           const playingCallback = () => setPlayState((prev) => ({ ...prev, questionNumber: 0, screen: "playing" }))
 
           await props.fetchQuestions(APIAttributes, playingCallback)
@@ -62,7 +68,7 @@ const Trivia = (props: Props) => {
           else{
             setPlayState((prev) => ({...prev, screen: "results"}))
           }
-          console.log(props.questions);
+          // console.log(props.questions);
           return;
         }
         case "results": {
@@ -70,7 +76,7 @@ const Trivia = (props: Props) => {
         }
       }
   }
-
+  /* Router only meant to catch invalid URL and route to Not Found */
   return (
     <div className="Trivia-Wrapper">
       <Router>
